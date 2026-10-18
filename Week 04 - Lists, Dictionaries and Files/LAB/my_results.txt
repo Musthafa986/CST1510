@@ -1,3 +1,0 @@
-srv-01,OK
-srv-02,OK
-srv-03,OK

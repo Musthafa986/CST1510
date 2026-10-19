@@ -11,11 +11,6 @@ Run it:   python template.py
 Work through the numbered sections in order. Each one tells you what it must do.
 Delete these instructions as you replace them with your code.
 """
-from pathlib import Path
-
-HERE = Path(__file__).parent
-DATA_FILE = HERE / "my_records.txt"
-RESULTS_FILE = HERE / "my_results.txt"
 
 # =================================================================== FUNCTIONS
 # 1. Bring back check_record(value, limit) and print_report(...) from Week 3
@@ -69,10 +64,15 @@ def write_results(path, results):
 #    Excellent : also write the results out to a new file (one line per
 #                record: label, status), as well as printing them.
 
+with open("my_records.txt", "w") as f:
+    f.write("srv-01,87,120\n")
+    f.write("srv-02,141,256\n")
+    f.write("srv-03,45,64\n")
+    
 try:
-    records = load_records(DATA_FILE)
+    records = load_records("my_records.txt")
 except FileNotFoundError:
-    print(f"Data file not found: {DATA_FILE} - starting with no records")
+    print(f"Data file not found: {"my_records.txt"} - starting with no records")
     records = []
 
 # =============================================================== PROCESS + OUTPUT
@@ -92,7 +92,7 @@ for record in records:
     if status == "OVER LIMIT":
         over_count += 1
 
-write_results(RESULTS_FILE, results)
+write_results("my_results.txt", results)
 print(f"\nOVER LIMIT: {over_count} of {len(records)} records")
 
 # ==========================================================================
